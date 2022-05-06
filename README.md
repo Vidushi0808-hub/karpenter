@@ -28,10 +28,12 @@ terraform init
 terraform plan  
 terraform apply  
 
-
 kubectl apply -f provisioners/default-provisioner.yaml  
 kubectl apply -f provisioners/custom-provisioner.yaml  
 
 kubectl apply -f test/deployment.yaml  
 kubectl apply -f test/aws-cli.yaml  
+
+kubectl scale deploy inflate --replicas 5
+kuebctl scale deploy awscli --replicas 2
 ```
