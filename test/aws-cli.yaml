@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: awscli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: awscli
+  template:
+    metadata:
+      labels:
+        name: awscli
+    spec:
+      nodeSelector:
+        karpenter.sh/provisioner-name: custom
+      containers:
+        - name: awscli
+          image: amazon/aws-cli
+          command:
+            - "sleep"
+            - "604800"
+          resources:
+            requests:
+              cpu: 1
+              memory: 10Mi
